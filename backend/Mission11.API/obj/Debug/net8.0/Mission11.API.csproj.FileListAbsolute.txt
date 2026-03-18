@@ -131,3 +131,4 @@
 /Users/joshuagoates/Documents/Mission11/backend/Mission11.API/obj/Debug/net8.0/Mission11.API.pdb
 /Users/joshuagoates/Documents/Mission11/backend/Mission11.API/obj/Debug/net8.0/Mission11.API.genruntimeconfig.cache
 /Users/joshuagoates/Documents/Mission11/backend/Mission11.API/obj/Debug/net8.0/ref/Mission11.API.dll
+/Users/joshuagoates/Documents/Mission11/backend/Mission11.API/obj/Debug/net8.0/Mission11.API.sourcelink.json

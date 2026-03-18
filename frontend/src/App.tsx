@@ -7,7 +7,7 @@ function App() {
     <>
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to Hilton's Bookstore</h1>
+      <h1 className="text-dark">Welcome to Hilton's Bookstore</h1>
       </header>
       <main>
         <BookList />
