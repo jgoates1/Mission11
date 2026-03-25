@@ -1,28 +1,45 @@
 import { useEffect, useState } from 'react';
-import type { Book } from './types';
+import type { Book } from '../types';
+import { useCart } from '../CartContext'; // ADDED IMPORT
 
-function BookList() {
-    const [books, setBooks] = useState <Book[]>([]);
+// Define the props we are receiving from App.tsx
+interface BookListProps {
+    selectedCategories: string[];
+}
+
+function BookList({ selectedCategories }: BookListProps) {
+    const { addToCart } = useCart(); // grabs the function from context
+    const [books, setBooks] = useState<Book[]>([]);
     const [pageNum, setPageNum] = useState(1);
-    const [pageSize, setPageSize] = useState(5); // we want 5 books per page
+    const [pageSize, setPageSize] = useState(5);
     const [totalNumBooks, setTotalNumBooks] = useState(0);
-    // this one is for the sorting stuff
     const [sortByTitle, setSortByTitle] = useState(false);
 
-    // useEffect runs when pageNum or pageSize changes
+    // Whenever the selected categories change, reset the page number to 1
+    useEffect(() => {
+        setPageNum(1);
+    }, [selectedCategories]);
+
+    // Fetch the books whenever pageNum, pageSize, sorting, or categories change
     useEffect(() => {
         const fetchBooks = async () => {
-            // Using backticks (`) to inject our variables into the URL
-            const response = await fetch(`http://localhost:4000/api/books?pageNum=${pageNum}&pageSize=${pageSize}&sortByTitle=${sortByTitle}`);
+            // Format the array into query string pieces: "category=Biography&category=Classic"
+            const categoryParams = selectedCategories
+                .map(cat => `category=${encodeURIComponent(cat)}`)
+                .join("&");
+
+            // Build the final URL safely appending the category params if they exist
+            const url = `http://localhost:4000/api/books?pageNum=${pageNum}&pageSize=${pageSize}&sortByTitle=${sortByTitle}${categoryParams ? `&${categoryParams}` : ""}`;
+
+            const response = await fetch(url);
             const data = await response.json();
             
-            // Notice how we access data.books and data.totalNumBooks now!
             setBooks(data.books);
             setTotalNumBooks(data.totalNumBooks);
         };
 
         fetchBooks();
-    }, [pageNum, pageSize, sortByTitle]); // React will re-run the effect if these change
+    }, [pageNum, pageSize, sortByTitle, selectedCategories]); // Added selectedCategories here!
 
     const totalPages = Math.ceil(totalNumBooks / pageSize);
 
@@ -68,6 +85,23 @@ function BookList() {
                   <td>{b.category}</td>
                   <td>{b.pageCount}</td>
                   <td>${b.price.toFixed(2)}</td>
+                  
+                  <td>
+                    <button 
+                      className="btn btn-sm btn-primary"
+                      onClick={() => {
+                        addToCart({
+                          bookId: b.bookId,
+                          title: b.title,
+                          price: b.price,
+                          quantity: 1
+                        });
+                      }}
+                    >
+                      Add to Cart
+                    </button>
+                  </td>
+
                 </tr>
               ))}
             </tbody>

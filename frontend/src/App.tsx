@@ -1,20 +1,25 @@
-import './App.css'
-import BookList from './BookList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './CartContext'; 
+import CartSummary from './components/CartSummary';
+import BooksPage from './pages/BooksPage';
+import CartPage from './pages/CartPage';
+import './App.css'; // Optional, especially since we deleted its contents earlier!
 
 function App() {
-
   return (
-    <>
-    <div className="App">
-      <header className="App-header">
-      <h1 className="text-dark">Welcome to Hilton's Bookstore</h1>
-      </header>
-      <main>
-        <BookList />
-      </main>
-    </div>
-    </>
-  )
+    <CartProvider>
+      <Router>
+        {/* CartSummary stays here so it floats on top of EVERY page */}
+        <CartSummary />
+        
+        <Routes>
+          {/* Now we just route directly to our full page components! */}
+          <Route path="/" element={<BooksPage />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+      </Router>
+    </CartProvider>
+  );
 }
 
-export default App
+export default App;
