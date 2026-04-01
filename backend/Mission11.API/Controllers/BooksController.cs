@@ -50,7 +50,7 @@ namespace Mission11.API.Controllers
             // 6. Return the results
             return Ok(new { books = bookList, totalNumBooks });
         }
-        
+
         // This creates a new endpoint at: api/books/categories
         [HttpGet("categories")]
         public IActionResult GetCategories()
@@ -60,10 +60,64 @@ namespace Mission11.API.Controllers
             var categories = _context.Books
                 .Select(b => b.Category)
                 .Distinct()
-                .OrderBy(c => c) 
+                .OrderBy(c => c)
                 .ToList();
 
             return Ok(categories); // Returns the list of strings as JSON
+        }
+        
+        // CREATE: Adds a new book to the database
+        [HttpPost]
+        public IActionResult AddBook([FromBody] Book newBook)
+        {
+            _context.Books.Add(newBook);
+            _context.SaveChanges();
+            
+            return Ok(newBook); // Return the created book
+        }
+
+        // UPDATE: Modifies an existing book
+        [HttpPut("{id}")]
+        public IActionResult UpdateBook(int id, [FromBody] Book updatedBook)
+        {
+            // Find the existing book in the database
+            var book = _context.Books.FirstOrDefault(b => b.BookId == id);
+            
+            if (book == null) 
+            {
+                return NotFound();
+            }
+
+            // Update each field manually
+            book.Title = updatedBook.Title;
+            book.Author = updatedBook.Author;
+            book.Publisher = updatedBook.Publisher;
+            book.Isbn = updatedBook.Isbn;
+            book.Classification = updatedBook.Classification;
+            book.Category = updatedBook.Category;
+            book.PageCount = updatedBook.PageCount;
+            book.Price = updatedBook.Price;
+
+            _context.SaveChanges();
+            
+            return Ok(book); // Return the updated book
+        }
+
+        // DELETE: Removes a book from the database
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBook(int id)
+        {
+            var book = _context.Books.FirstOrDefault(b => b.BookId == id);
+            
+            if (book == null) 
+            {
+                return NotFound();
+            }
+
+            _context.Books.Remove(book);
+            _context.SaveChanges();
+            
+            return NoContent(); // 204 No Content is standard for successful deletion
         }
     }
 }

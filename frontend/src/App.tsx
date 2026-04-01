@@ -3,7 +3,8 @@ import { CartProvider } from './CartContext';
 import CartSummary from './components/CartSummary';
 import BooksPage from './pages/BooksPage';
 import CartPage from './pages/CartPage';
-import './App.css'; // Optional, especially since we deleted its contents earlier!
+import AdminBooksPage from './pages/AdminBooksPage';
+import './App.css';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           {/* Now we just route directly to our full page components! */}
           <Route path="/" element={<BooksPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/adminbooks" element={<AdminBooksPage />} />
         </Routes>
       </Router>
     </CartProvider>

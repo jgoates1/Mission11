@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/fad4309a-ed84-49d3-8715-700d30a4156f/resourceGroups/appsvc_windows_westus2/providers/Microsoft.Web/sites/goates-books-api",
+    "appService.deploySubpath": "backend/Mission11.API/publish"
+}
