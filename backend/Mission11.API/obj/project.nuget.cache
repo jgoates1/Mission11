@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Wf/HpTA7ii4Oj5JaW1yZAgi9Hpay+sDP1KJIwinrrD/ivC2aHtoxJIaGaSTiupiJhcCZDSfiOKY1YGeF9OkDbw==",
+  "dgSpecHash": "MHmGj60dDFc=",
   "success": true,
   "projectFilePath": "/Users/joshuagoates/Documents/Mission11/backend/Mission11.API/Mission11.API.csproj",
   "expectedPackageFiles": [
@@ -54,7 +54,10 @@
     "/Users/joshuagoates/.nuget/packages/system.reflection.metadata/6.0.1/system.reflection.metadata.6.0.1.nupkg.sha512",
     "/Users/joshuagoates/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/joshuagoates/.nuget/packages/system.text.encoding.codepages/6.0.0/system.text.encoding.codepages.6.0.0.nupkg.sha512",
-    "/Users/joshuagoates/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512"
+    "/Users/joshuagoates/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512",
+    "/Users/joshuagoates/.nuget/packages/microsoft.netcore.app.ref/8.0.25/microsoft.netcore.app.ref.8.0.25.nupkg.sha512",
+    "/Users/joshuagoates/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.25/microsoft.aspnetcore.app.ref.8.0.25.nupkg.sha512",
+    "/Users/joshuagoates/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.25/microsoft.netcore.app.host.osx-arm64.8.0.25.nupkg.sha512"
   ],
   "logs": []
 }

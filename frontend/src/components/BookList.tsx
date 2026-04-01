@@ -29,7 +29,7 @@ function BookList({ selectedCategories }: BookListProps) {
                 .join("&");
 
             // Build the final URL safely appending the category params if they exist
-            const url = `http://localhost:4000/api/books?pageNum=${pageNum}&pageSize=${pageSize}&sortByTitle=${sortByTitle}${categoryParams ? `&${categoryParams}` : ""}`;
+            const url = `https://goates-books-api-ebhygeevfyeteshf.westus2-01.azurewebsites.net/api/books?pageNum=${pageNum}&pageSize=${pageSize}&sortByTitle=${sortByTitle}${categoryParams ? `&${categoryParams}` : ""}`;
 
             const response = await fetch(url);
             const data = await response.json();
